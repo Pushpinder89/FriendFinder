@@ -13,22 +13,33 @@ var friendsArray = require('../data/friends.js');
 app.post("/api/friends", function(req, res) {
     // req.body hosts is equal to the JSON post sent from the user
     // This works because of our body parsing middleware
+    console.log(req.body);
     var newFriend = req.body;
-    // check if the table is full
-    if(friendsArray.length < 5){
-       friendsArray.push(newcustomer);
-       res.send("It went to the table");
-       // res.json(newcustomer); 
-    }
-    else{
-        waitlistArray.push(newcustomer);
-        res.send("It went to the waitlist"); 
-        // res.json(newcustomer);
-    }
-    // Using a RegEx Pattern to remove spaces from newCharacter
+    // friendsArray.push(newFriend);
 
+  var allDifference = [];
+  var match;
+  var lowestNumber = 0;
+
+  for(var i = 0; i <friendsArray.length; i++){
+    var difference = 0;
+    // console.log("String :" , friendsArray[i].scores);
+    for(var j = 0; j <friendsArray[i].scores.length; j++){
+      difference = newFriend.scores[j] - friendsArray[i].scores[j];
+    }
+    allDifference.push(difference);
+  }
+
+  for( var i = 0; i < allDifference.length; i++){
+    if (allDifference[i] < lowestNumber || lowestNumber === 0) {
+      lowestNumber = allDifference[i];
+      match = friendsArray[i]
+    }
+  }
+  res.json(match)
   });
   };
+  
 
 
 
