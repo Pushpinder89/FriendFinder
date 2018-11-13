@@ -4,14 +4,23 @@ var friendsArray = [
        {
          name: "Mike",
          image: "www.google.com",
-         scores: [1,2,3,4,5,5,6,7,8,9]
+         scores: ["1","2","3","4","5","5","6","7","8","9"]
        },
         {
-         name: "Mike",
+         name: "Malina",
          image: "www.google.com",
-         scores: [5,4,3,7,8,6,4,5,2,5]
+         scores: ["5","4","3","7","8","6","4","5","2","5"]
        },
-    
+       {
+        name: "janei",
+        image: "www.google.com",
+        scores: ["0","1","1","2","3","1","4","2","2","5"]
+      },
+      {
+        name: "camila",
+        image: "www.google.com",
+        scores: ["5","4","3","7","8","6","4","5","2","5"]
+      },
      ];
    
      module.exports = friendsArray;

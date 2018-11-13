@@ -6,6 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <title>FriendSurvey</title>
   </head>
   <body>
@@ -27,7 +32,7 @@
     <form>
     <h4>Question 1</h4>
     <h6>You like spending time with nature</h6>
-      <select class="custom-select custom-select-sm">
+      <select class="custom-select custom-select-sm"id="1">
         <option selected>Select an option</option>
         <option value="1">1</option>
         <option value="2">2</option>
@@ -37,7 +42,7 @@
       </select>
       <h4>Question 2</h4>
       <h6>People say that You work very hard</h6>
-      <select class="custom-select custom-select-sm">
+      <select class="custom-select custom-select-sm"id="2">
         <option selected>Select an option</option>
         <option value="1">1</option>
         <option value="2">2</option>
@@ -47,7 +52,7 @@
       </select>
       <h4>Question 3</h4>
       <h6>You like light colors like white and yellow</h6>
-      <select class="custom-select custom-select-sm">
+      <select class="custom-select custom-select-sm"id="3">
         <option selected>Select an option</option>
         <option value="1">1</option>
         <option value="2">2</option>
@@ -57,7 +62,7 @@
       </select>
       <h4>Question 4</h4>
       <h6>You love making friends</h6>
-      <select class="custom-select custom-select-sm">
+      <select class="custom-select custom-select-sm" id="4">
         <option selected>Select an option</option>
         <option value="1">1</option>
         <option value="2">2</option>
@@ -67,7 +72,7 @@
       </select>
       <h4>Question 5</h4>
       <h6>Your passion is helping others as much as I can</h6>
-      <select class="custom-select custom-select-sm">
+      <select class="custom-select custom-select-sm" id="5">
         <option selected>Select an option</option>
         <option value="1">1</option>
         <option value="2">2</option>
@@ -77,7 +82,7 @@
       </select>
       <h4>Question 6</h4>
       <h6>You like Seattle more than any other city</h6>
-      <select class="custom-select custom-select-sm">
+      <select class="custom-select custom-select-sm" id="6">
         <option selected>Select an option</option>
         <option value="1">1</option>
         <option value="2">2</option>
@@ -87,7 +92,7 @@
       </select>
       <h4>Question 7</h4>
       <h6>People can rarely upset you</h6>
-      <select class="custom-select custom-select-sm">
+      <select class="custom-select custom-select-sm" id="7">
         <option selected>Select an option</option>
         <option value="1">1</option>
         <option value="2">2</option>
@@ -97,7 +102,7 @@
       </select>
       <h4>Question 8</h4>
       <h6>You rarely get carried away by fantasies and ideas.</h6>
-      <select class="custom-select custom-select-sm">
+      <select class="custom-select custom-select-sm" id="8">
         <option selected>Select an option</option>
         <option value="1">1</option>
         <option value="2">2</option>
@@ -107,7 +112,7 @@
       </select>
       <h4>Question 9</h4>
       <h6>Your mind is always buzzing with unexplored ideas and plans.</h6>
-      <select class="custom-select custom-select-sm">
+      <select class="custom-select custom-select-sm" id="9">
         <option selected>Select an option</option>
         <option value="1">1</option>
         <option value="2">2</option>
@@ -117,7 +122,7 @@
       </select>
       <h4>Question 10</h4>
       <h6>Question 10 goes here?</h6>
-      <select class="custom-select custom-select-sm">
+      <select class="custom-select custom-select-sm" id="10">
         <option selected>Select an option</option>
         <option value="1">1</option>
         <option value="2">2</option>
@@ -126,61 +131,112 @@
         <option value="5">5</option>
       </select>
       <P></P>
-      <button type="button" class="btn btn-primary btn-lg btn-block">Submit the form</button>
+      <button type="button" id="submit" class="btn btn-primary btn-lg btn-block">Submit the form</button>
     </div>
   </form>
+  <div id="results-modal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
 
-    <script type="text/javascript">
-      // In this code below we create the Front-end JavaScript which "POSTS" our form data to our express server.
-      // In essence, when the user hits submit, jQuery grabs all of the fields then sends a post request to our api
-      // Our api recognizes the route (/api/tables)... and then runs the associated code (found in api-routes.js).
-      // In this case the associated code "saves" the data to the table-data.js file or waitinglist-data.js file
-    
-      $(".submit").on("click", function(event) {
-        event.preventDefault();
-    
-        // Here we grab the form elements
-        var newFriend = {
-          friendName: $("#formGroupExampleInput").val().trim(),
-          friendImage: $("#formGroupExampleInput2").val().trim(),
-          // friendScores: $("#friend-scores").val().trim(),
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button class="close" data-dismiss="modal">&times;</button>
+          <h2 class="modal-title"><strong>Best Match</strong></h2>
+        </div>
+        <div class="modal-body">
+          <h2 id="match-name"></h2>
+          <!-- <img id="match-img" src="https://media.licdn.com/mpr/mpr/shrinknp_400_400/p/6/005/064/1bd/3435aa3.jpg" alt=""> -->
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
 
-          // phoneNumber: $("#reserve-phone").val().trim(),
-          // customerEmail: $("#reserve-email").val().trim(),
-          // customerID: $("#reserve-unique-id").val().trim()
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    // Chosen CSS
+    // var config = {
+    //   ".chosen-select": {},
+    //   ".chosen-select-deselect": {
+    //     allow_single_deselect: true
+    //   },
+    //   ".chosen-select-no-single": {
+    //     disable_search_threshold: 10
+    //   },
+    //   ".chosen-select-no-results": {
+    //     no_results_text: "Oops, nothing found!"
+    //   },
+    //   ".chosen-select-width": {
+    //     width: "95%"
+    //   }
+    // };
+
+    // for (var selector in config) {
+    //   $(selector).chosen(config[selector]);
+    // }
+
+    // Capture the form inputs
+    $("#submit").on("click", function(event) {
+     
+      event.preventDefault();
+      console.log("submit workinig");
+      // Form validation
+      function validateForm() {
+        var isValid = true;
+        $(".form-control").each(function() {
+          if ($(this).val() === "") {
+            isValid = false;
+          }
+        });
+
+        $(".custom-select").each(function() {
+
+          if ($(this).val() === "") {
+            isValid = false;
+          }
+        });
+        return isValid;
+      }
+
+      // If all required fields are filled
+      if (validateForm()) {
+        // Create an object for the user"s data
+        var userData = {
+          name: $("#formGroupExampleInput").val(),
+          photo: $("#formGroupExampleInput2").val(),
+          scores: [
+            $("#1").val(),
+            $("#2").val(),
+            $("#3").val(),
+            $("#4").val(),
+            $("#5").val(),
+            $("#6").val(),
+            $("#7").val(),
+            $("#8").val(),
+            $("#9").val(),
+            $("#10").val()
+          ]
         };
-    
-        console.log(newFriend);
-    
-        // This line is the magic. It"s very similar to the standard ajax function we used.
-        // Essentially we give it a URL, we give it the object we want to send, then we have a "callback".
-        // The callback is the response of the server. In our case, we set up code in api-routes that "returns" true or false
-        // depending on if a tables is available or not.
-    
-        $.post("/api/friends", newReservation,
-          function(data) {
-    
-            // If a table is available... tell user they are booked.
-            if (data) {
-              alert("Yay! You are officially booked!");
-            }
-    
-            // If a table is available... tell user they on the waiting list.
-            else {
-              alert("Sorry you are on the wait list");
-            }
-    
-            // Clear the form when submitting
-            $("#reserve-name").val("");
-            $("#reserve-phone").val("");
-            $("#reserve-email").val("");
-            $("#reserve-unique-id").val("");
-    
-          });
-    
-      });
-    
-    </script>
+
+        // AJAX post the data to the friends API.
+        $.post("/api/friends", userData, function(data) {
+
+          // Grab the result from the AJAX post so that the best match's name and photo are displayed.
+          $("#match-name").text(data.name);
+          $("#match-img").attr("src", data.photo);
+
+          // Show the modal with the best match
+          $("#results-modal").modal("toggle");
+
+        });
+      } else {
+        alert("Please fill out all fields before submitting!");
+      }
+    });
+  </script>
+
     
   </body>
 </html>
