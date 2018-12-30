@@ -1,13 +1,25 @@
 
+body{
+    background-image: url("../images/friends.jpg");
+    background-repeat: no-repeat;
+    background-position-x:center;
+    background-size: 100%;
+   
+}
 .jumbotron{
-    margin-top: 3%;
+    height: 320px;
+    text-align: center;
+    background-color: coral;
+    color: coral;
     font-weight: bolder;
-    font-size: 30px;
+    font-size: 20px;
+    margin-top: 45%;
 }
 .display-4 {
     font-weight: 700;
     font-family: initial;
 }
 .container{
+    margin-top:  30%;
     margin-bottom: 10px;
 }
