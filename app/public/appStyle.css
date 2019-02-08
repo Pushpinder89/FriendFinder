@@ -1,14 +1,12 @@
 body{
-    background-image: url("../images/friends.jpg");
+    background-image: url("./friends.jpg"); 
     background-repeat: no-repeat;
     background-position-x:center;
-    background-size: 100%;
-   
+    background-size: 100%;   
 }
 .jumbotron{
     height: 320px;
     text-align: center;
-    background-color: coral;
     color: coral;
     font-weight: bolder;
     font-size: 20px;
