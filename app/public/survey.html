@@ -227,8 +227,7 @@
           $("#results-modal").modal("toggle");
           
         });
-        locationUrl = '/index';
-          window.location(locationUrl);
+        window.location.pathname = '/index';
       } else {
         alert("Please fill out all fields before submitting!");
       }
