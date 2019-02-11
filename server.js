@@ -16,11 +16,11 @@ app.use(express.json());
 ///////////////////////
 //API ROUTES
 // =============================================================
-require("./app/controllers/apiRoutes")(app);
+require("/app/controllers/apiRoutes")(app);
 
 //HTML ROUTES
 // =============================================================
-require("./app/controllers/htmlRoutes")(app);
+require("/app/controllers/htmlRoutes")(app);
 
 // Starts the server to begin listening
 // =============================================================
