@@ -221,16 +221,17 @@
 
           // Grab the result from the AJAX post so that the best match's name and photo are displayed.
           $("#match-name").text(data.name);
-          $("#match-img").attr("src", data.photo);
+          // $("#match-img").attr("src", data.photo);
 
           // Show the modal with the best match
           $("#results-modal").modal("toggle");
 
         });
+        window.location = '../public/index.html'
       } else {
         alert("Please fill out all fields before submitting!");
       }
-      window.location='index.html';
+    
     });
   </script>
 
