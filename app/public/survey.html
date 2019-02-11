@@ -225,9 +225,9 @@
 
           // Show the modal with the best match
           $("#results-modal").modal("toggle");
-          
+          window.location.pathname = '/static/index.html';
         });
-        window.location.pathname = '/static/index.html';
+        
       } else {
         alert("Please fill out all fields before submitting!");
       }
